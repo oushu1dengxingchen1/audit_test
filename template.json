@@ -1,0 +1,165 @@
+{
+  "index_patterns": ["%s"],
+  "order": 1,
+  "settings" : {
+    "refresh_interval": "5s",
+    "number_of_shards" : %d,
+    "number_of_replicas" : %d,
+    "index.lifecycle.name": "%s",
+    "index.lifecycle.rollover_alias": "%s",
+    "search.slowlog.threshold.query.warn": "5s",
+    "search.slowlog.threshold.query.info": "1s",
+    "search.slowlog.threshold.fetch.warn": "1s",
+    "search.slowlog.threshold.fetch.info": "800ms",
+    "indexing.slowlog.threshold.index.warn": "12s",
+    "indexing.slowlog.threshold.index.info": "5s"
+  },
+  "mappings":{
+    "_default_": {
+      "_all": {
+        "enabled": false
+      }
+    },
+    "doc": {
+      "dynamic":"false",
+      "_source": {
+        "enabled": true
+      },
+      "properties":{
+        "@timestamp" : {
+          "type" : "date"
+        },
+
+        "username":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "database":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "process_id":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "remote_host":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "remote_port": {
+          "type": "integer"
+        },
+
+        "session_id":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "cmd_id":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "vci":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "level":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "audit_type":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "audit_result":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "query":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "effected_rows":{
+          "type" : "integer"
+        },
+
+        "duration":{
+          "type" : "integer"
+        },
+
+        "detail_info":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+
+        "parse_tree":{
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

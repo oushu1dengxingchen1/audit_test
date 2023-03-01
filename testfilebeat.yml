@@ -1,0 +1,41 @@
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+filebeat.inputs:
+- enabled: "true"
+  fields:
+    index_tag: inspect01
+  paths:
+  - /home/deng/environment/filebeat/log/test_mapping.log
+  type: log
+- enabled: "true"
+  fields:
+    index_tag: inspect02
+  paths:
+  - /home/deng/environment/filebeat/log/test_filebeat.log
+  type: log
+output.elasticsearch:
+  hosts:
+  - localhost:9200
+  indices:
+  - index: myindex01
+    when.equals:
+      fields:
+        index_tag: inspect01
+  - index: myindex02
+    when.equals:
+      fields:
+        index_tag: inspect02
+  password: "123456"
+  pipeline: testFileBeat
+  pipelines:
+  - pipeline: testFileBeat01
+    when.equals:
+      fields:
+        index_tag: inspect01
+  - pipeline: testFileBeat01
+    when.equals:
+      fields:
+        index_tag: inspect02
+  username: elastic
+setup.ilm.enabled: false
